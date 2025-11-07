@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brothers Network Jhenidah - প্রিমিয়াম ইন্টারনেট</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e40af; --secondary: #f59e0b; --dark: #0c1b33; --light: #f8fafc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Hind Siliguri', sans-serif; background: var(--light); color: #333; line-height: 1.7; }
+    .navbar {
+      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      padding: 1rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-bottom: 1px solid #eee;
+    }
+    .nav-container {
+      max-width: 1300px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
+    }
+    .logo img { height: 50px; }
+    .nav-links a { color: var(--dark); margin: 0 15px; text-decoration: none; font-weight: 600; font-size: 1.1rem; }
+    .nav-links a:hover { color: var(--primary); }
+    .hero-slider { 
+      height: 90vh; margin-top: 75px; position: relative; overflow: hidden; 
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1350') center/cover;
+      color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px;
+    }
+    .hero-slider h1 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 700; }
+    .hero-slider p { font-size: 1.5rem; margin-bottom: 30px; }
+    .btn-primary {
+      background: var(--secondary); color: white; padding: 15px 35px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 1.1rem; box-shadow: 0 5px 15px rgba(245,158,11,0.4);
+    }
+    .container { max-width: 1300px; margin: auto; padding: 80px 20px; }
+    .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: var(--primary); font-weight: 700; }
+    .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .package {
+      background: white; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+    }
+    .package h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary); }
+    .price { font-size: 3rem; color: var(--dark); font-weight: bold; }
+    .price span { font-size: 1rem; color: #555; }
+    .package ul { list-style: none; margin: 20px 0; }
+    .package ul li { margin-bottom: 10px; font-size: 1.1rem; }
+    .contact-form { max-width: 700px; margin: auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+    input, textarea { width: 100%; padding: 15px; margin: 12px 0; border: 1px solid #ddd; border-radius: 10px; font-family: inherit; font-size: 1rem; }
+    button { background: var(--primary); color: white; padding: 15px 30px; border: none; border-radius: 10px; cursor: pointer; font-size: 1.1rem; width: 100%; font-weight: 600; }
+    footer { background: var(--dark); color: white; text-align: center; padding: 40px 20px; margin-top: 60px; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="logo.jpeg" alt="Brothers Network Jhenidah Logo">
+      </div>
+      <div class="nav-links">
+        <a href="#home">হোম</a> <a href="#packages">প্যাকেজ</a> <a href="#contact">যোগাযোগ</a>
+      </div>
+    </div>
+  </nav>
+  <section class="hero-slider" id="home">
+    <h1>Brothers Network Jhenidah</h1>
+    <p>আপনার আস্থা, আমাদের নেটওয়ার্ক</p>
+    <a href="#packages" class="btn-primary">আমাদের প্যাকেজ দেখুন</a>
+  </section>
+  <div class="container">
+    <section id="packages">
+      <h2 class="section-title">ইন্টারনেট প্যাকেজ</h2>
+      <div class="packages-grid">
+        <div class="package">
+          <h3>হোম বেসিক</h3>
+          <div class="price">৫৫০ <span>টাকা/মাস</span></div>
+          <ul> <li>✔ ১৫ Mbps স্পিড</li> <li>✔ অনলিমিটেড ডাটা</li> </ul>
+        </div>
+        <div class="package" style="border: 2px solid var(--primary); transform: scale(1.05);">
+          <h3>হোম প্রো (জনপ্রিয়)</h3>
+          <div class="price">৯০০ <span>টাকা/মাস</span></div>
+          <ul> <li>✔ ৩০ Mbps স্পিড</li> <li>✔ ট্রু অনলিমিটেড</li> </ul>
+        </div>
+        <div class="package">
+          <h3>বিজনেস সল্যুশন</h3>
+          <div class="price">৩৫০০ <span>টাকা/মাস</span></div>
+          <ul> <li>✔ ১০০ Mbps স্পিড</li> <li>✔ স্ট্যাটিক আইপি</li> </ul>
+        </div>
+      </div>
+    </section>
+    <section id="contact" style="margin-top: 80px;">
+      <h2 class="section-title">নতুন সংযোগের জন্য আবেদন</h2>
+      <form class="contact-form" action="https://formspree.io/f/YOUR_ID" method="POST">
+        <input type="text" name="name" placeholder="আপনার নাম" required />
+        <input type="tel" name="phone" placeholder="মোবাইল নম্বর" required />
+        <input type="text" name="address" placeholder="আপনার ঠিকানা" required />
+        <button type="submit">আবেদন জমা দিন</button>
+      </form>
+    </section>
+  </div>
+  <footer>
+    <p>© 2025 Brothers Network Jhenidah</p>
+  </footer>
+</body>
+</html>

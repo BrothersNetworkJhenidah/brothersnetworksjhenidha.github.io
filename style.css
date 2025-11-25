@@ -797,7 +797,7 @@ body {
         padding: 10px 0;
         z-index: 98;
         transition: transform 0.3s ease-out;
-        transform: translateY(0); /* ইনিশিয়ালি নিচে না রেখে স্ক্রল করার জন্য ঠিক করা হলো */
+        transform: translateY(0); 
     }
 
     .nav-links.open {
@@ -817,13 +817,16 @@ body {
         border-radius: 5px;
     }
     
+    /* ফিক্সড: SELF CARE বাটনের আকার এবং পজিশন ঠিক করা হলো */
     .btn-selfcare {
-        margin-left: 10px; 
+        padding: 8px 15px; 
+        font-size: 0.9rem; 
+        order: 2; 
     }
     
     /* === FONT SIZE & SLIDER FIX (মোবাইলের জন্য কন্টেন্ট ছোট করা) === */
     .slide-content h1 {
-        font-size: 1.8rem; /* Make big text smaller */
+        font-size: 1.8rem; 
     }
     .slide-content p {
         font-size: 1.1rem;

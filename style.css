@@ -826,7 +826,7 @@ body {
     
     /* === FONT SIZE & SLIDER FIX (মোবাইলের জন্য কন্টেন্ট ছোট করা) === */
     .slide-content h1 {
-        font-size: 1.8rem; 
+        font-size: 1.8rem; /* Make big text smaller */
     }
     .slide-content p {
         font-size: 1.1rem;

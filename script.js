@@ -1,19 +1,17 @@
 /* ========================================
    === MASTER SCRIPT (Brothers Network) ===
-   === MODIFIED FOR PERFORMANCE FIX (2025) ===
+   === MODIFIED FOR PERFORMANCE & HAMBURGER MENU (2025) ===
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- 1. LANGUAGE SWITCHER ---
     const savedLang = localStorage.getItem('language') || 'bn';
-    // setLanguage ফাংশন কল করা হলো, যা পারফরম্যান্সের জন্য অপটিমাইজড
     setLanguage(savedLang); 
 
     const btnBn = document.getElementById('btn-bn');
     const btnEn = document.getElementById('btn-en');
 
-    // ইভেন্ট লিসেনার সেট করা হলো
     if (btnBn) btnBn.addEventListener('click', () => setLanguage('bn'));
     if (btnEn) btnEn.addEventListener('click', () => setLanguage('en'));
     
@@ -24,60 +22,71 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentSlide = 0;
         const slideInterval = 5000;
 
-        // Function to handle slider movement
         function showSlide(n) {
             slides.forEach(slide => slide.classList.remove('active'));
             currentSlide = (n + slides.length) % slides.length;
             slides[currentSlide].classList.add('active');
         }
 
-        // Function to change slide by step (1 or -1)
         function changeSlide(n) {
             showSlide(currentSlide + n);
         }
 
-        // Auto slide interval setup
         let autoSlide = setInterval(() => { changeSlide(1); }, slideInterval);
 
         const prevBtn = document.querySelector('.prev');
         const nextBtn = document.querySelector('.next');
 
         if(prevBtn && nextBtn) {
-            // Event listener for Previous button
             prevBtn.addEventListener('click', () => {
-                clearInterval(autoSlide); // Stop auto slide
-                changeSlide(-1); // Go to previous slide
-                // Restart auto slide timer
+                clearInterval(autoSlide); 
+                changeSlide(-1); 
                 autoSlide = setInterval(() => { changeSlide(1); }, slideInterval);
             });
 
-            // Event listener for Next button
             nextBtn.addEventListener('click', () => {
-                clearInterval(autoSlide); // Stop auto slide
-                changeSlide(1); // Go to next slide
-                // Restart auto slide timer
+                clearInterval(autoSlide); 
+                changeSlide(1); 
                 autoSlide = setInterval(() => { changeSlide(1); }, slideInterval);
             });
         }
+    }
+    
+    // --- 3. HAMBURGER MENU TOGGLE ---
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if(menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            // আইকন পরিবর্তন: মেনু খোলা থাকলে X, না থাকলে Bars
+            if (navLinks.classList.contains('open')) {
+                menuToggle.innerHTML = '<i class="fas fa-times"></i>'; 
+            } else {
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+        
+        // মেনু খোলা থাকলে লিঙ্কে ক্লিক করলে মেনু বন্ধ হবে
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
     }
 });
 
 // --- LANGUAGE SETTER FUNCTION (MODIFIED FOR PERFORMANCE) ---
 function setLanguage(lang) {
-    // সকল বাংলা এবং ইংরেজি এলিমেন্টগুলোকে সিলেক্ট করা হলো
     const allEn = document.querySelectorAll('.lang-en');
     const allBn = document.querySelectorAll('.lang-bn');
     
-    // পারফরম্যান্সের জন্য অপটিমাইজড ক্লাসভিত্তিক লজিক ব্যবহার করা হলো (হ্যাং সমস্যা সমাধান)
     if (lang === 'bn') {
-        // ইংলিশ এলিমেন্টগুলোতে 'lang-hidden' ক্লাস যোগ করে দ্রুত লুকিয়ে ফেলা হলো
         allEn.forEach(el => el.classList.add('lang-hidden'));      
-        // বাংলা এলিমেন্টগুলো থেকে 'lang-hidden' ক্লাস সরিয়ে দ্রুত দেখিয়ে দেওয়া হলো
         allBn.forEach(el => el.classList.remove('lang-hidden'));   
-    } else { // lang === 'en'
-        // বাংলা এলিমেন্টগুলোতে 'lang-hidden' ক্লাস যোগ করে দ্রুত লুকিয়ে ফেলা হলো
+    } else { 
         allBn.forEach(el => el.classList.add('lang-hidden'));      
-        // ইংলিশ এলিমেন্টগুলো থেকে 'lang-hidden' ক্লাস সরিয়ে দ্রুত দেখিয়ে দেওয়া হলো
         allEn.forEach(el => el.classList.remove('lang-hidden'));   
     }
 
@@ -94,7 +103,6 @@ function setLanguage(lang) {
             btnBn.classList.remove('active');
         }
     }
-    // Save language preference to local storage
     localStorage.setItem('language', lang); 
 }
 

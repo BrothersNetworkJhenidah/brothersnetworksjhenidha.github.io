@@ -6,12 +6,8 @@
     --bg-dark: #0a1128;
 
     /* === গ্লাসি সেটিং (ভারসাম্য আনার জন্য ফিক্স) === */
-    /* স্বচ্ছতা সামান্য বাড়িয়ে দিন (আগে ছিল 0.03) */
     --bg-card: rgba(255, 255, 255, 0.08); 
-    
-    /* ব্লার ইফেক্টটিকে নগণ্য করে দিন (0.5px) */
     --blur-effect: blur(0.5px); 
-    
     --border-color: rgba(255, 255, 255, 0.15);
 
     --text-light: #ffffff;
@@ -94,9 +90,8 @@ body {
     padding: 15px 0;
     border-bottom: 1px solid var(--border-color);
     position: sticky;
-    top: 40px; /* টপ বারের নিচে */
+    top: 40px; 
     z-index: 99;
-    /* পারফরম্যান্স বাড়ানোর জন্য যোগ করা হলো */
     transform: translateZ(0); 
 }
 
@@ -107,6 +102,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; /* মেনু টগল পজিশনের জন্য */
 }
 
 .logo img {
@@ -114,6 +110,7 @@ body {
     border-radius: 5px;
 }
 
+/* ডেস্কটপ মেনু লিংক */
 .nav-links a {
     color: var(--text-gray);
     text-decoration: none;
@@ -126,9 +123,20 @@ body {
 
 .nav-links a:hover, .nav-links a.active {
     color: var(--primary);
-    /* উজ্জ্বলতা বাড়াতে টেক্সট শ্যাডো যোগ করা হলো */
     text-shadow: 0 0 5px rgba(0, 229, 255, 0.7); 
     border-bottom: 2px solid var(--primary);
+}
+
+/* === HAMBURGER MENU TOGGLE (NEW) === */
+.menu-toggle {
+    display: none; /* ডেস্কটপে লুকানো */
+    font-size: 1.5rem;
+    color: var(--text-light);
+    cursor: pointer;
+    z-index: 101;
+    padding: 5px 10px;
+    order: 3; /* SELF CARE এর পর দেখানোর জন্য */
+    margin-left: 15px; 
 }
 
 
@@ -146,7 +154,6 @@ body {
     display: inline-block;
     border: none;
     cursor: pointer;
-    /* বাটনকে উজ্জ্বল করতে শ্যাডো বাড়ানো হলো */
     box-shadow: 0 0 10px rgba(0, 229, 255, 0.8), 0 0 20px rgba(0, 229, 255, 0.4); 
 }
 
@@ -154,7 +161,6 @@ body {
 .btn-primary:hover,
 .btn-start:hover { 
     background: white;
-    /* হোভারে সাদা করে গ্লো ইফেক্ট যোগ করা হলো */
     box-shadow: 0 0 30px var(--primary);
 }
 
@@ -322,6 +328,13 @@ body {
 }
 
 
+/* === RECOMMENDED PACKAGE (NEW FIX) === */
+.package.recommended {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5); 
+}
+
+
 /* === TEAM GRID & TEAM MEMBER (about.html FIX) === */
 .team-grid {
     display: grid;
@@ -392,6 +405,14 @@ body {
     color: var(--primary);
     margin: 10px 0;
 }
+
+.package-top .price span {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-left: 5px;
+    color: var(--text-gray);
+}
+
 
 .package-bottom ul {
     list-style: none;
@@ -736,7 +757,8 @@ body {
 .footer-social-links .fa-envelope:hover { color: #EA4335; }
 
 
-/* === RESPONSIVE DESIGN === */
+/* === RESPONSIVE DESIGN (FINAL FIXES) === */
+/* 900px পর্যন্ত টলারেবল */
 @media (max-width: 900px) {
     .grid-3 {
         grid-template-columns: 1fr 1fr;
@@ -753,69 +775,84 @@ body {
 }
 
 @media (max-width: 768px) {
-    .top-bar {
-        font-size: 0.8rem;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .lang-switcher {
-        margin-top: 5px;
-    }
-    .navbar {
-        top: 65px; 
-        padding: 10px 0;
+    /* === MOBILE NAVIGATION FIX: Hamburger Menu === */
+    .menu-toggle {
+        display: block; 
     }
     .nav-container {
-        flex-direction: column;
+        flex-wrap: wrap; 
+        justify-content: space-between; 
     }
+    
+    /* মেনু লিঙ্কগুলো লুকানো এবং ভার্টিক্যাল করা হলো */
     .nav-links {
-        margin-top: 15px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        background: rgba(10, 17, 40, 0.95); 
+        border-top: 1px solid var(--border-color);
+        padding: 10px 0;
+        z-index: 98;
+        transition: transform 0.3s ease-out;
+        transform: translateY(0); /* ইনিশিয়ালি নিচে না রেখে স্ক্রল করার জন্য ঠিক করা হলো */
     }
+
+    .nav-links.open {
+        display: flex; 
+        transform: translateY(0);
+    }
+    
     .nav-links a {
-        margin: 5px 10px;
-        font-size: 0.9rem;
+        margin: 5px 20px;
+        font-size: 1.1rem;
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: none;
     }
-    .slide h1 {
-        font-size: 2.5rem;
+    .nav-links a:hover {
+        background: rgba(0, 229, 255, 0.1);
+        border-radius: 5px;
     }
-    .slide p {
-        font-size: 1.2rem;
+    
+    .btn-selfcare {
+        margin-left: 10px; 
     }
-    .section-title {
-        font-size: 2rem;
+    
+    /* === FONT SIZE & SLIDER FIX (মোবাইলের জন্য কন্টেন্ট ছোট করা) === */
+    .slide-content h1 {
+        font-size: 1.8rem; 
     }
+    .slide-content p {
+        font-size: 1.1rem;
+    }
+    
+    /* === GENERAL LAYOUT FIX === */
     .grid-3 {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* 3-column grids become 1-column */
     }
     .packages-grid {
+        grid-template-columns: 1fr; /* 2-column grids become 1-column */
+    }
+    .team-grid {
+        grid-template-columns: 1fr; /* 5-column grids become 1-column */
+    }
+    
+    /* FOOTER AND CONTACT FIXES */
+    .footer-grid, .contact-layout-new, .coverage-grid {
         grid-template-columns: 1fr;
     }
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-    .map-col {
-        order: -1; 
-    }
-    .contact-layout-new .form-row {
-        grid-template-columns: 1fr;
-    }
-    .team-member {
-        margin-top: 80px;
-    }
-    .team-member img {
-        margin-top: -60px;
-        width: 120px;
-        height: 120px;
+    
+    /* মোবাইল ডিভাইসে প্যাকেজের দাম ছোট করা */
+    .package-top .price {
+        font-size: 2rem;
     }
 }
 
 
 /* === BACKGROUND ANIMATION FOR HOME PAGE (FULL COVER) === */
-
-/* Keyframe Animation to cycle through 4 full-screen background images */
 @keyframes changeBackground {
     0% {
         background-image: 
@@ -846,17 +883,13 @@ body {
 
 
 body#page-home {
-    /* Base background style for animation */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* Animation call */
-    animation: changeBackground 20s infinite alternate; /* 4 images * 5s each = 20s cycle */
+    animation: changeBackground 20s infinite alternate; 
 }
 
-
-/* === BACKGROUND IMAGES FOR OTHER PAGES (As you requested before) === */
-
+/* === BACKGROUND IMAGES FOR OTHER PAGES === */
 body#page-packages {
     background-image: linear-gradient(rgba(10, 17, 40, 0.5), rgba(10, 17, 40, 0.7)),
         url("images/background-packages.jpg"); 
@@ -888,26 +921,17 @@ body#page-payment {
 }
 
 /* ================================================= */
-/* === ফিক্স ১: ফ্লিকারিং (Flicker/FOUC) ফিক্স === */
+/* === FIXES FOR LANGUAGE SWITCHING & PERFORMANCE === */
 /* ================================================= */
 
-/* যেহেতু 'bn' (বাংলা) ডিফল্ট ভাষা, তাই JS লোড হওয়ার আগে 'en' কে লুকিয়ে রাখা হলো। 
-   এতে পেজ নেভিগেশনের সময় উভয় ভাষা একসাথে দেখাবে না। */
 .lang-en {
     display: none !important; 
 }
 
-/* ================================================= */
-/* === ফিক্স ২: পারফরম্যান্স (Hang) ফিক্সের জন্য CSS ক্লাস === */
-/* ================================================= */
-
-/* জাভাস্ক্রিপ্ট এই ক্লাসটি ব্যবহার করবে কন্টেন্ট দ্রুত হাইড করার জন্য। */
 .lang-hidden {
     display: none !important;
 }
 
-/* যখন 'lang-hidden' ক্লাসটি থাকবে না (অর্থাৎ কন্টেন্টটি active), তখন সেটি অবশ্যই 
-   'display: contents' ব্যবহার করবে। এটি আপনার layout-এর অখণ্ডতা বজায় রাখবে। */
 .lang-bn:not(.lang-hidden), 
 .lang-en:not(.lang-hidden) {
     display: contents !important;
